@@ -31,6 +31,33 @@ The design consists of two main hardware modules (`bdi_dbi_encoder` and `bdi_dbi
 
 ---
 
+## System Block Diagram
+
+```mermaid
+flowchart LR
+    %% Inputs
+    DIN["data_in [255:0]"] --> BDI_ENC
+
+    %% Encoder Module
+    subgraph ENCODER ["bdi_dbi_encoder"]
+        direction LR
+        BDI_ENC["Stage 1: BDI Compression"] --> DBI_ENC["Stage 2: DBI Inversion"]
+        DBI_ENC --> ENC_REG["Output Flops"]
+    end
+
+    %% Interconnect Bus
+    ENC_REG -- "bus_out [255:0]\nbdi_flag, dbi_flag" --> REV_DBI
+
+    %% Decoder Module
+    subgraph DECODER ["bdi_dbi_decoder"]
+        direction LR
+        REV_DBI["Stage 1: Reverse DBI"] --> REV_BDI["Stage 2: Reverse BDI"]
+        REV_BDI --> DEC_REG["Output Flops"]
+    end
+
+    %% Outputs
+    DEC_REG --> DOUT["data_out [255:0]"]
+
 ## 📂 Repository Structure
 
 ```text
