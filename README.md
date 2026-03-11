@@ -29,34 +29,6 @@ The design consists of two main hardware modules (`bdi_dbi_encoder` and `bdi_dbi
 * If the number of '1's exceeds 128 (more than 50% of the bus width), the entire 256-bit data is bitwise inverted.
 * The `dbi_flag` is asserted alongside the data to tell the decoder to re-invert the data upon reception, significantly reducing the toggle rate on the physical bus lines.
 
+![System Block Diagram](block_diagram.png)
+
 ---
-
-## 🏗️ Architecture Overview
-
-The design consists of two main hardware modules (`bdi_dbi_encoder` and `bdi_dbi_decoder`) that execute a two-stage data transformation pipeline on a 256-bit wide data bus. 
-
-### System Block Diagram
-```mermaid
-flowchart LR
-    %% Inputs
-    DIN["data_in [255:0]"] --> BDI_ENC
-
-    %% Encoder Module
-    subgraph ENCODER ["bdi_dbi_encoder"]
-        direction LR
-        BDI_ENC["Stage 1: BDI Compression"] --> DBI_ENC["Stage 2: DBI Inversion"]
-        DBI_ENC --> ENC_REG["Output Flops"]
-    end
-
-    %% Interconnect Bus
-    ENC_REG -- "bus_out [255:0]\nbdi_flag, dbi_flag" --> REV_DBI
-
-    %% Decoder Module
-    subgraph DECODER ["bdi_dbi_decoder"]
-        direction LR
-        REV_DBI["Stage 1: Reverse DBI"] --> REV_BDI["Stage 2: Reverse BDI"]
-        REV_BDI --> DEC_REG["Output Flops"]
-    end
-
-    %% Outputs
-    DEC_REG --> DOUT["data_out [255:0]"]
