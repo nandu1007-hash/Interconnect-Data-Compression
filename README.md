@@ -31,8 +31,11 @@ The design consists of two main hardware modules (`bdi_dbi_encoder` and `bdi_dbi
 
 ---
 
-## System Block Diagram
+## 🏗️ Architecture Overview
 
+The design consists of two main hardware modules (`bdi_dbi_encoder` and `bdi_dbi_decoder`) that execute a two-stage data transformation pipeline on a 256-bit wide data bus. 
+
+### System Block Diagram
 ```mermaid
 flowchart LR
     %% Inputs
@@ -57,20 +60,3 @@ flowchart LR
 
     %% Outputs
     DEC_REG --> DOUT["data_out [255:0]"]
-
-## 📂 Repository Structure
-
-```text
-├── rtl/
-│   ├── bdi_dbi_encoder.sv        # RTL for the Compressor/Encoder
-│   ├── bdi_dbi_decoder.sv        # RTL for the Decompressor/Decoder
-│   └── tb_bdi_dbi.sv             # Verification environment with directed & random testing
-├── syn/
-│   ├── constraints.sdc           # Timing constraints for synthesis
-│   └── bdi_dbi_encoder_netlist.v # Synthesized gate-level netlist
-├── reports/
-│   ├── synthesis_area.rpt        # Synthesis Area Report
-│   ├── synthesis_power.rpt       # Synthesis Power Report
-│   └── synthesis_timing.rpt      # Synthesis Timing Report
-└── docs/
-    └── design_document.pdf       # Detailed architecture block diagrams
