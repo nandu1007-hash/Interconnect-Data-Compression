@@ -34,14 +34,16 @@ The design consists of two main hardware modules (`bdi_dbi_encoder` and `bdi_dbi
 ## 📂 Repository Structure
 
 ```text
-├── src/
-│   ├── bdi_dbi_encoder.sv      # RTL for the Compressor/Encoder
-│   └── bdi_dbi_decoder.sv      # RTL for the Decompressor/Decoder
-├── tb/
-│   └── tb_bdi_dbi.sv           # Verification environment with directed & random testing
+├── rtl/
+│   ├── bdi_dbi_encoder.sv        # RTL for the Compressor/Encoder
+│   ├── bdi_dbi_decoder.sv        # RTL for the Decompressor/Decoder
+│   └── tb_bdi_dbi.sv             # Verification environment with directed & random testing
+├── syn/
+│   ├── constraints.sdc           # Timing constraints for synthesis
+│   └── bdi_dbi_encoder_netlist.v # Synthesized gate-level netlist
 ├── reports/
-│   ├── synthesis_area.rpt      # Synthesis Area Report
-│   ├── synthesis_power.rpt     # Synthesis Power Report
-│   └── synthesis_timing.rpt    # Synthesis Timing Report
+│   ├── synthesis_area.rpt        # Synthesis Area Report
+│   ├── synthesis_power.rpt       # Synthesis Power Report
+│   └── synthesis_timing.rpt      # Synthesis Timing Report
 └── docs/
-    └── design_document.pdf     # Detailed architecture block diagrams
+    └── design_document.pdf       # Detailed architecture block diagrams
