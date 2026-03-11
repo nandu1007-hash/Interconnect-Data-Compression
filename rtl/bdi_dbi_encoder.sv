@@ -1,5 +1,3 @@
-`timescale 1ns/1ps
-
 module bdi_dbi_encoder (
     input  logic         clk,
     input  logic         rst_n,
