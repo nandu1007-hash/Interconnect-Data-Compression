@@ -11,6 +11,18 @@ Team ID : 44 , Problem Statement number : 10
 
 ---
 
+## 1. Project Overview <a name="project-overview"></a>
+
+Modern System-on-Chip (SoC) interconnects route massive amounts of data across silicon, consuming significant dynamic power. Dynamic power dissipation in CMOS circuits is governed by the equation:
+
+$$P_{dynamic} = \alpha \cdot C \cdot V_{DD}^2 \cdot f$$
+
+Where the switching activity (toggle rate), $\alpha$, represents how often physical wires flip between logic `0` and logic `1`. 
+
+**Objective:** This project implements a fully synthesizable, lossless hardware encoder/decoder pair. By combining **Base-Delta-Immediate (BDI)** compression with **Data Bus Inversion (DBI)**, this module minimizes the toggle rate on a 256-bit wide data bus, effectively reducing the dynamic power consumed by the interconnect highway without losing data fidelity.
+
+---
+
 ## 🏗️ Architecture Overview
 
 The design consists of two main hardware modules (`bdi_dbi_encoder` and `bdi_dbi_decoder`) that execute a two-stage data transformation pipeline on a 256-bit wide data bus. 
