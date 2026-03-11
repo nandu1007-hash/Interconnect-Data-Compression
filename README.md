@@ -2,9 +2,6 @@
 Team ID : 44 , Problem Statement number : 10
 # SoC Interconnect Data Compression (BDI + DBI)
 
-**Team ID:** [Insert Team ID Here]  
-**Question Number:** [Insert Question Number Here] / [R:3, V:4, S:2]
-
 ---
 
 ## 📌 Problem Statement
